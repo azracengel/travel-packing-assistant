@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Packing Assistant — Option A</title>
+    <style>
+      :root {
+        --bg: #faf7f2;
+        --panel: #f5efe7;
+        --panel-strong: #efe1d0;
+        --text: #342b26;
+        --muted: #6a5a51;
+        --border: rgba(52, 43, 38, 0.2);
+        --accent: #c8ad91;
+        --accent-strong: #9e7e5f;
+        --shadow: rgba(52, 43, 38, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .page {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 48px 24px 72px;
+      }
+
+      .site-header {
+        font-size: 0.76rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+
+      .planner {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .hero {
+        padding-bottom: 8px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 4vw, 4.2rem);
+        line-height: 0.95;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+      }
+
+      .hero p {
+        margin: 18px 0 0;
+        max-width: 520px;
+        font-size: 1.08rem;
+        color: var(--muted);
+      }
+
+      .search-form,
+      .weather,
+      .checklist {
+        background: rgba(255, 255, 255, 0.24);
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 26px var(--shadow);
+      }
+
+      .search-form {
+        padding: 26px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .field label {
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .field input {
+        width: 100%;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.3);
+        color: var(--text);
+        padding: 14px 16px;
+        font-size: 1rem;
+        font-family: inherit;
+      }
+
+      .dates {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      button {
+        margin-top: 8px;
+        width: 100%;
+        border: 1px solid var(--accent-strong);
+        background: var(--accent);
+        color: var(--text);
+        padding: 16px 20px;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        font-family: inherit;
+        cursor: pointer;
+      }
+
+      .weather,
+      .checklist {
+        padding: 24px 26px;
+      }
+
+      .section-title {
+        margin: 0 0 16px;
+        font-size: 1.05rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .weather h2,
+      .checklist h2 {
+        margin: 0 0 12px;
+        font-size: 1.15rem;
+        font-weight: 600;
+      }
+
+      .destination-name {
+        margin: 0 0 10px;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        line-height: 1.1;
+      }
+
+      .summary-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+        margin: 12px 0;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .summary-note {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .checklist ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 12px;
+      }
+
+      .checklist li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+        color: var(--text);
+      }
+
+      .checklist li::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: inline-block;
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding-top: 34px;
+        }
+
+        .dates {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">Travel Packing Assistant</header>
+
+      <main class="planner">
+        <section class="hero">
+          <h1>Pack for the forecast.</h1>
+          <p>Travelers who want quick weather-based packing advice.</p>
+        </section>
+
+        <form class="search-form">
+          <div class="field">
+            <label for="destination">Destination</label>
+            <input id="destination" type="text" value="London" />
+          </div>
+
+          <div class="dates">
+            <div class="field">
+              <label for="travel-start">Travel start</label>
+              <input id="travel-start" type="date" value="2026-11-10" />
+            </div>
+
+            <div class="field">
+              <label for="travel-end">Travel end</label>
+              <input id="travel-end" type="date" value="2026-11-15" />
+            </div>
+          </div>
+
+          <button type="button">Create my packing list.</button>
+        </form>
+
+        <section class="weather">
+          <h2 class="section-title">Weather forecast summary</h2>
+          <p class="destination-name">London</p>
+          <div class="summary-row">
+            <span>High 18°C</span>
+            <span>Low 12°C</span>
+            <span>35% rain chance</span>
+          </div>
+          <p class="summary-note">Cool and comfortable with a chance of light rain.</p>
+        </section>
+
+        <section class="checklist">
+          <h2 class="section-title">Packing checklist</h2>
+          <ul>
+            <li>Light jacket</li>
+            <li>Comfortable walking shoes</li>
+            <li>Compact umbrella</li>
+            <li>Layered tops</li>
+            <li>Toiletries</li>
+            <li>Travel charger</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
